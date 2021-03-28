@@ -1,0 +1,25 @@
+<ion-header>
+  <ion-toolbar color="dark">
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>Event List</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-item>
+    <ion-input (ionChange)="checkInput()" clearInput  [(ngModel)]="filterEventName" placeholder="Search by Event Name or City"></ion-input>
+    <ion-button (click)="filterData()"> Search </ion-button>
+  </ion-item>
+  <ion-card mode="ios" (click)="gotoEventDetails(event._id)" *ngFor="let event of eventDetails">
+    <div class="cardDiv">
+      <ion-card-subtitle>
+        <ion-icon style="padding-right: 10px;" src="../../../assets/clock.svg"></ion-icon><span>{{getFormattedDate(event.eventStartDate,'DD MMM YYYY')}} </span>
+        <span style="float: right;">{{getFormattedDate(event.eventStartDate,'hh:mm a')}} - {{getFormattedDate(event.eventEndDate,'hh:mm a')}}</span>
+        <!-- <span  style="float: right;" *ngIf="!isTimeAhead(today.StartTime)">Completed</span> -->
+      </ion-card-subtitle>
+      <p><b>{{event.eventTitle}} - {{event.eventLocation}}</b></p>
+    </div>
+  </ion-card>
+</ion-content>

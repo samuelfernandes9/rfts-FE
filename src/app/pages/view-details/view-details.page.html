@@ -1,0 +1,88 @@
+<ion-header>
+<ion-toolbar color="dark">
+  <ion-title>Event Details</ion-title>
+</ion-toolbar>
+</ion-header>
+
+
+<ion-content>
+
+  <ion-item *ngIf="eventTitle">
+    <ion-icon src="../../../assets/balloons.svg"></ion-icon>
+    <ion-label class="capitalise">{{eventTitle}}</ion-label>
+  </ion-item>
+  
+  <ion-item *ngIf="eventCategory">
+    <ion-icon src="../../../assets/list.svg"></ion-icon>
+    <ion-label class="capitalise">{{eventCategory}}</ion-label>
+  </ion-item>
+
+  <ion-item *ngIf="eventDate">
+    <ion-icon src="../../../assets/appointment.svg"></ion-icon>
+    <ion-label>{{eventDate}}</ion-label>
+  </ion-item>
+
+  <ion-item *ngIf="eventTime">
+    <ion-icon src="../../../assets/clock.svg"></ion-icon>
+    <ion-label>{{eventTime}}</ion-label>
+  </ion-item>
+
+  <ion-item *ngIf="contactName">
+    <ion-icon src="../../../assets/contact.svg"></ion-icon>
+    <ion-label class="capitalise">{{contactName}}</ion-label>
+  </ion-item>
+
+  <ion-item *ngIf="spouseName">
+    <ion-icon src="../../../assets/spouse.svg"></ion-icon>
+    <ion-label class="capitalise">{{spouseName}}</ion-label>
+  </ion-item>
+
+  <ion-item *ngIf="contactNumber">
+    <ion-icon src="../../../assets/call.svg"></ion-icon>
+    <ion-label>{{contactNumber}}</ion-label>
+  </ion-item>
+
+  <ion-item *ngIf="email">
+    <ion-icon src="../../../assets/email.svg"></ion-icon>
+    <ion-label>{{email}}</ion-label>
+  </ion-item>
+
+  <ion-item *ngIf="dob">
+    <ion-icon src="../../../assets/birthday.svg"></ion-icon>
+    <ion-label>{{dob}}</ion-label>
+  </ion-item>
+
+  <ion-item *ngIf="wedAnniversary">
+    <ion-icon src="../../../assets/calendar.svg"></ion-icon>
+    <ion-label>{{wedAnniversary}}</ion-label>
+  </ion-item>
+
+  <ion-item *ngIf="city">
+    <ion-icon src="../../../assets/city.svg"></ion-icon>
+    <ion-label>{{city}}</ion-label>
+  </ion-item>
+
+  <ion-item *ngIf="address">
+    <ion-icon src="../../../assets/placeholder.svg"></ion-icon>
+    <ion-label>{{address}}</ion-label>
+  </ion-item>
+
+  <ion-item *ngIf="eventDescription">
+    <ion-icon src="../../../assets/paper.svg"></ion-icon>
+    <ion-label>{{eventDescription}}</ion-label>
+  </ion-item>
+
+  <ion-item>
+    <ion-icon src="../../../assets/church.svg"></ion-icon>
+    <ion-label *ngIf="isBeliever">Yes</ion-label>
+    <ion-label *ngIf="!isBeliever">No</ion-label>
+  </ion-item>
+
+  <ion-item *ngIf="referredBy">
+    <ion-icon src="../../../assets/refer.svg"></ion-icon>
+    <ion-label class="capitalise">{{referredBy}}</ion-label>
+  </ion-item>
+
+  
+
+</ion-content>

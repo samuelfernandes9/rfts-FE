@@ -1,0 +1,71 @@
+<ion-header>
+  <ion-toolbar color="dark">
+    <div class="imgDiv">
+      <ion-img class="img" src="../../../assets/logo2.png"></ion-img>
+      </div>
+    <ion-buttons *ngIf="nameSelected" slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <!-- <ion-title>Home</ion-title> -->
+    <ion-icon *ngIf="nameSelected" (click)="presentAlertConfirm()" class="downloadIcon" slot="end" src="../../../assets/download.svg"></ion-icon>
+  </ion-toolbar>
+ 
+</ion-header>
+
+<ion-content>
+  <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)">
+    <ion-refresher-content></ion-refresher-content>
+  </ion-refresher>
+
+  <div *ngIf="!nameSelected">
+  <ion-item>
+  <ion-input [(ngModel)]="name" placeholder="Enter your name"></ion-input>
+  </ion-item>
+
+  <form [formGroup]="userDetailsForm">
+  <ion-item>
+    <ion-input formControlName="email" [(ngModel)]="email" placeholder="Enter your email"></ion-input>
+    </ion-item>
+    <div *ngFor="let validation of validation_messages.email">
+      <p class="err_message" *ngIf="userDetailsForm.get('email').hasError(validation.type) && (userDetailsForm.get('email').dirty || userDetailsForm.get('email').touched)">
+        {{validation.message}}
+      </p>
+    </div>
+    </form>
+    <div style="display: flex;justify-content: center;">
+      <ion-button (click)="submitName()">Submit</ion-button>
+      </div>
+    
+    </div>
+
+    <ion-item *ngIf="nameSelected"> 
+      <ion-label>Filter</ion-label>
+      <ion-select [(ngModel)]="filterCity" (ionChange)="filterByCity()" placeholder="Select city">
+        <ion-select-option value="all">ALL</ion-select-option>
+        <ion-select-option *ngFor="let city of cityArray" value="{{city}}">{{city}}</ion-select-option>
+      </ion-select>
+    </ion-item>
+
+    <div class="control-section">
+    <ejs-schedule currentView="WorkWeek"  (navigating)="viewChange($event)" cellHeight="100px" [readonly]="readonlyFlag" *ngIf="nameSelected" [startHour]='startHour' [endHour]='endHour' [minDate]="minDate" [maxDate]="maxDate" #scheduleObj (actionBegin)="onActionBegin($event)" [eventSettings]='eventSettings'> </ejs-schedule>
+    </div>
+
+<p *ngIf="nameSelected" class="heading">Today's events :</p>
+<p  *ngIf="(todaysEvent && todaysEvent.length==0) && nameSelected">No events today</p>
+<ion-card (click)="gotoEventDetails(today.Id)" mode="ios" *ngFor="let today of todaysEvent">
+    <div class="cardDiv">
+    <ion-card-subtitle>
+      <ion-icon style="padding-right: 10px;" src="../../../assets/clock.svg"></ion-icon><span>{{getFormattedDate(today.StartTime,'hh:mm a')}} - {{getFormattedDate(today.EndTime,'hh:mm a')}}</span>
+      <span style="float: right;">{{checkDate(today.StartTime,today.EndTime)}} - {{today.StartTime | amTimeAgo}}</span>
+    </ion-card-subtitle>
+    <p><b>{{today.Subject}} - {{today.Location}}</b></p>
+  </div>
+</ion-card>
+</ion-content>
+
+<ion-footer class="ion-no-border">
+  <ion-toolbar color="dark">
+    <ion-title style="text-align: center;">CTGT 2020 Planner</ion-title>
+  </ion-toolbar>
+</ion-footer>
+

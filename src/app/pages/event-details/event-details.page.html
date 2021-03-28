@@ -1,0 +1,108 @@
+<ion-header>
+  <ion-toolbar color="dark">
+    <ion-title>Edit Event Details</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <!-- Contact name, Spouse name, Contact number, Email, DOB, Wedding Anniversary, City, Address -->
+<ion-item lines="none">
+  <ion-icon src="../../../assets/balloons.svg"></ion-icon>
+  <ion-input [(ngModel)]="eventTitle"></ion-input>
+</ion-item>
+
+<ion-item lines="none">
+  <ion-icon src="../../../assets/appointment.svg"></ion-icon>
+  <ion-input [(ngModel)]="eventDate" readonly></ion-input>
+</ion-item>
+
+<ion-item lines="none">
+  <ion-icon src="../../../assets/clock.svg"></ion-icon>
+  <ion-input [(ngModel)]="eventTime" readonly></ion-input>
+</ion-item>
+
+<ion-item>
+  <ion-label>Event Category</ion-label>
+  <ion-select [(ngModel)]="eventCategory" value="brown" okText="Okay" cancelText="Dismiss">
+    <ion-select-option value="personal_family">Personal / Family</ion-select-option>
+    <ion-select-option value="office">Office Colleagues</ion-select-option>
+    <ion-select-option value="children">Children</ion-select-option>
+    <ion-select-option value="teens">Teens</ion-select-option>
+    <ion-select-option value="youth">Youth</ion-select-option>
+    <ion-select-option value="men">Men</ion-select-option>
+    <ion-select-option value="women">Women</ion-select-option>
+    <ion-select-option value="bafa">BAFA</ion-select-option>
+    <ion-select-option value="online_party">Online Party</ion-select-option>
+  </ion-select>
+</ion-item>
+
+<ion-item lines="none">
+  <ion-icon src="../../../assets/paper.svg"></ion-icon>
+  <ion-input [(ngModel)]="eventDescription" placeholder="Enter event description"></ion-input>
+</ion-item>
+
+<ion-item lines="none">
+  <ion-icon src="../../../assets/contact.svg"></ion-icon>
+  <ion-input [(ngModel)]="contactName" placeholder="Enter contact name"></ion-input>
+</ion-item>
+
+<ion-item lines="none">
+  <ion-icon src="../../../assets/spouse.svg"></ion-icon>
+  <ion-input [(ngModel)]="spouseName" placeholder="Enter spouse name"></ion-input>
+</ion-item>
+<form [formGroup]="additionalEventsForm">
+<ion-item lines="none">
+  <ion-icon src="../../../assets/call.svg"></ion-icon>
+  <ion-input maxlength="10" [(ngModel)]="contactNumber" formControlName="contactNumber" placeholder="Enter contact number"></ion-input>
+</ion-item>
+<div *ngFor="let validation of validation_messages.contactNumber">
+  <p class="err_message" *ngIf="additionalEventsForm.get('contactNumber').hasError(validation.type) && (additionalEventsForm.get('contactNumber').dirty || additionalEventsForm.get('contactNumber').touched)">
+    {{validation.message}}
+  </p>
+</div>
+
+<ion-item lines="none">
+  <ion-icon src="../../../assets/email.svg"></ion-icon>
+  <ion-input [(ngModel)]="email" formControlName="email" placeholder="Enter email"></ion-input>
+</ion-item>
+<div *ngFor="let validation of validation_messages.email">
+  <p class="err_message" *ngIf="additionalEventsForm.get('email').hasError(validation.type) && (additionalEventsForm.get('email').dirty || additionalEventsForm.get('email').touched)">
+    {{validation.message}}
+  </p>
+</div>
+</form>
+<ion-item lines="none">
+    <ion-label position="floating">DOB</ion-label>
+    <ion-datetime [(ngModel)]="dob" displayFormat="DD/MM/YYYY"  [max]="todayDate"></ion-datetime>
+  </ion-item>
+
+  <ion-item lines="none">
+    <ion-label position="floating">Wedding Anniversary</ion-label>
+    <ion-datetime [(ngModel)]="wedAnniversary" displayFormat="DD/MM/YYYY"  [max]="todayDate"></ion-datetime>
+  </ion-item>
+
+<ion-item lines="none">
+  <ion-icon src="../../../assets/city.svg"></ion-icon>
+  <ion-input [(ngModel)]="city" placeholder="Enter city"></ion-input>
+</ion-item>
+
+<ion-item lines="none">
+  <ion-icon src="../../../assets/placeholder.svg"></ion-icon>
+  <ion-input [(ngModel)]="address" placeholder="Enter address"></ion-input>
+</ion-item>
+
+<ion-item lines="none">
+  <ion-icon src="../../../assets/refer.svg"></ion-icon>
+  <ion-input [(ngModel)]="referredBy" placeholder="Referred by"></ion-input>
+</ion-item>
+
+<ion-item>
+  <ion-icon src="../../../assets/church.svg"></ion-icon>
+  <ion-label>Is the contact a believer?</ion-label>
+  No<ion-toggle mode="ios" (ionChange)="checkToggleValue($event)" [(ngModel)]="isBeliever" color="primary"></ion-toggle>Yes
+</ion-item>
+
+<div style="display: flex;justify-content: center;">
+<ion-button mode="ios" fill="outline" (click)="updateForm()">Update details</ion-button>
+</div>
+</ion-content>
