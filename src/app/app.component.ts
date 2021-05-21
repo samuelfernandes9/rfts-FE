@@ -6,7 +6,7 @@ import { StatusBar } from '@ionic-native/status-bar/ngx';
 import { AndroidPermissions } from '@ionic-native/android-permissions/ngx';
 import { FCM } from "cordova-plugin-fcm-with-dependecy-updated/ionic"
 import { Storage } from '@ionic/storage';
-import {readonly} from '../../config'
+import { readonly } from '../../config'
 
 
 @Component({
@@ -22,20 +22,15 @@ export class AppComponent {
       icon: 'home'
     },
     {
-      title: 'Add Additional Event Details',
-      url: 'event-list',
+      title: 'Enter Contact Details',
+      url: 'enter-contact-details',
       icon: 'edit'
-    },
-    {
-      title: 'View Events',
-      url: 'event-list2',
-      icon: 'calendarmenu'
     },
     {
       title: 'Logs',
       url: 'logs',
       icon: 'logs'
-    },
+    }
   ];
   readonly: boolean;
   constructor(
@@ -43,7 +38,7 @@ export class AppComponent {
     private splashScreen: SplashScreen,
     private statusBar: StatusBar,
     private androidPermissions: AndroidPermissions,
-    private storage : Storage
+    private storage: Storage
   ) {
     this.initializeApp();
   }
@@ -53,34 +48,31 @@ export class AppComponent {
     this.platform.ready().then(() => {
       this.statusBar.styleDefault();
       this.splashScreen.hide();
-      if(this.platform.is('cordova') && !this.readonly)
-      {
+      if (this.platform.is('cordova') && !this.readonly) {
         this.fcmSetup();
       }
-      else
-      {
+      else {
         // console.log("Cannot initiate FCM as platform is not cordova")
       }
-      
+
     });
   }
-  
-  fcmSetup()
-  {
+
+  fcmSetup() {
     FCM.getToken().then(token => {
 
-     this.storage.set("fcmToken",token)
+      this.storage.set("fcmToken", token)
     });
 
     FCM.onNotification().subscribe(data => {
-      if(data.wasTapped){
-        console.log("Received in background : ",data);
+      if (data.wasTapped) {
+        console.log("Received in background : ", data);
         // this.eventId = data['eventId']
         // console.log("Event id from notif : ",this.eventId)
         // this.dataService.setData(4,this.eventId)
         // this.router.navigateByUrl('event-details/4')
       } else {
-        console.log("Received in foreground : ",data);
+        console.log("Received in foreground : ", data);
         // this.eventId = data['eventId']
         // console.log("Event id from notif : ",this.eventId)
         // this.dataService.setData(5,this.eventId)

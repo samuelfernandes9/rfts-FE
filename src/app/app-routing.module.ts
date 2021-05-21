@@ -41,7 +41,15 @@ const routes: Routes = [
       special: DataResolverService
     },
     loadChildren: () => import('./pages/view-details/view-details.module').then( m => m.ViewDetailsPageModule)
+  },  {
+    path: 'enter-contact-details',
+    loadChildren: () => import('./pages/enter-contact-details/enter-contact-details.module').then( m => m.EnterContactDetailsPageModule)
   },
+  {
+    path: 'publish-message',
+    loadChildren: () => import('./pages/publish-message/publish-message.module').then( m => m.PublishMessagePageModule)
+  },
+
 ];
 
 @NgModule({

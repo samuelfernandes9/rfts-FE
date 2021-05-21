@@ -1,0 +1,130 @@
+<ion-header>
+  <ion-toolbar color="dark">
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>Enter contact details</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <!-- Contact name, Spouse name, Contact number, Email, DOB, Wedding Anniversary, City, Address -->
+  <form [formGroup]="contactForm">
+    <ion-item lines="none">
+      <ion-icon src="../../../assets/balloons.svg"></ion-icon>
+      <ion-input placeholder="Enter contact's name" formControlName="contactName"></ion-input>
+    </ion-item>
+    <div *ngFor="let validation of validation_messages.contactName">
+      <p class="err_message"
+        *ngIf="contactForm.get('contactName').hasError(validation.type) && (contactForm.get('contactName').dirty || contactForm.get('contactName').touched)">
+        {{validation.message}}
+      </p>
+    </div>
+
+    <ion-item lines="none">
+      <ion-icon src="../../../assets/appointment.svg"></ion-icon>
+      <ion-input placeholder="Enter contact's email" formControlName="contactEmail"></ion-input>
+    </ion-item>
+    <div *ngFor="let validation of validation_messages.contactEmail">
+      <p class="err_message"
+        *ngIf="contactForm.get('contactEmail').hasError(validation.type) && (contactForm.get('contactEmail').dirty || contactForm.get('contactEmail').touched)">
+        {{validation.message}}
+      </p>
+    </div>
+
+    <ion-item lines="none">
+      <ion-icon src="../../../assets/clock.svg"></ion-icon>
+      <ion-input placeholder="Enter contact's phone" formControlName="contactPhone"></ion-input>
+    </ion-item>
+    <div *ngFor="let validation of validation_messages.contactPhone">
+      <p class="err_message"
+        *ngIf="contactForm.get('contactPhone').hasError(validation.type) && (contactForm.get('contactPhone').dirty || contactForm.get('contactPhone').touched)">
+        {{validation.message}}
+      </p>
+    </div>
+
+
+    <ion-item>
+      <ion-label>Preferred Language</ion-label>
+      <ion-select [ngModelOptions]="{standalone: true}" [(ngModel)]="preferredLanguage" value="brown" okText="Okay"
+        cancelText="Dismiss">
+        <ion-select-option value="English">English</ion-select-option>
+        <ion-select-option value="Hindi">Hindi</ion-select-option>
+        <ion-select-option value="marathi">Marathi</ion-select-option>
+        <ion-select-option value="tamil">Tamil</ion-select-option>
+        <ion-select-option value="malayalam">Malayalam</ion-select-option>
+        <ion-select-option value="gujarati">Gujarati</ion-select-option>
+        <ion-select-option value="kannada">Kannada</ion-select-option>
+        <ion-select-option value="telugu">Telugu</ion-select-option>
+        <ion-select-option value="punjabi">Punjabi</ion-select-option>
+      </ion-select>
+    </ion-item>
+
+    <ion-item lines="none">
+      <ion-icon src="../../../assets/paper.svg"></ion-icon>
+      <ion-input formControlName="contactAddress" placeholder="Enter contact's address"></ion-input>
+    </ion-item>
+    <div *ngFor="let validation of validation_messages.contactAddress">
+      <p class="err_message"
+        *ngIf="contactForm.get('contactAddress').hasError(validation.type) && (contactForm.get('contactAddress').dirty || contactForm.get('contactAddress').touched)">
+        {{validation.message}}
+      </p>
+    </div>
+
+    <ion-item lines="none">
+      <ion-icon src="../../../assets/contact.svg"></ion-icon>
+      <ion-input formControlname="contactCity" placeholder="Enter contact's city"></ion-input>
+    </ion-item>
+    <div *ngFor="let validation of validation_messages.contactCity">
+      <p class="err_message"
+        *ngIf="contactForm.get('contactCity').hasError(validation.type) && (contactForm.get('contactCity').dirty || contactForm.get('contactCity').touched)">
+        {{validation.message}}
+      </p>
+    </div>
+
+    <ion-item lines="none">
+      <ion-label position="floating">Contact's Date of Birth</ion-label>
+      <ion-datetime formControlName="contactDOB" displayFormat="DD/MM/YYYY" [max]="todayDate"></ion-datetime>
+    </ion-item>
+    <div *ngFor="let validation of validation_messages.contactDOB">
+      <p class="err_message"
+        *ngIf="contactForm.get('contactDOB').hasError(validation.type) && (contactForm.get('contactDOB').dirty || contactForm.get('contactDOB').touched)">
+        {{validation.message}}
+      </p>
+    </div>
+
+    <ion-item lines="none">
+      <ion-icon src="../../../assets/city.svg"></ion-icon>
+      <ion-input formControlName="contactSpouseName" placeholder="Enter contact's Spouse name"></ion-input>
+    </ion-item>
+    <div *ngFor="let validation of validation_messages.contactDOB">
+      <p class="err_message"
+        *ngIf="contactForm.get('contactDOB').hasError(validation.type) && (contactForm.get('contactDOB').dirty || contactForm.get('contactDOB').touched)">
+        {{validation.message}}
+      </p>
+    </div>
+
+    <ion-item lines="none">
+      <ion-label position="floating">Wedding Anniversary</ion-label>
+      <ion-datetime formControlName="wedAnniversary" displayFormat="DD/MM/YYYY" [max]="todayDate"></ion-datetime>
+    </ion-item>
+    <div *ngFor="let validation of validation_messages.wedAnniversary">
+      <p class="err_message"
+        *ngIf="contactForm.get('wedAnniversary').hasError(validation.type) && (contactForm.get('wedAnniversary').dirty || contactForm.get('wedAnniversary').touched)">
+        {{validation.message}}
+      </p>
+    </div>
+
+    <ion-item>
+      <ion-icon src="../../../assets/church.svg"></ion-icon>
+      <ion-label>Is the contact a believer?</ion-label>
+      No<ion-toggle mode="ios" (ionChange)="checkToggleValue($event)" [ngModelOptions]="{standalone: true}"
+        [(ngModel)]="isBeliever" color="primary">
+      </ion-toggle>Yes
+    </ion-item>
+
+    <div style="display: flex;justify-content: center;">
+      <ion-button mode="ios" fill="outline" (click)="updateForm()">Submit</ion-button>
+    </div>
+  </form>
+</ion-content>

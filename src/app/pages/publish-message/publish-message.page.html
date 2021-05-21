@@ -1,0 +1,17 @@
+<ion-header>
+  <ion-toolbar color="dark">
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>Publish Message</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-item lines="none">
+    <ion-icon src="../../../assets/balloons.svg"></ion-icon>
+    <textarea id="messageBody" #messageBody placeholder="Enter message body">
+    </textarea>
+  </ion-item>
+  <ion-button (click)="submit()">Submit</ion-button>
+</ion-content>
