@@ -9,7 +9,7 @@ const routes: Routes = [
   // },
   {
     path: '',
-    redirectTo: 'home',
+    redirectTo: 'dashboard',
     pathMatch: 'full'
   },
   {
@@ -41,13 +41,18 @@ const routes: Routes = [
       special: DataResolverService
     },
     loadChildren: () => import('./pages/view-details/view-details.module').then( m => m.ViewDetailsPageModule)
-  },  {
+  },
+  {
     path: 'enter-contact-details',
     loadChildren: () => import('./pages/enter-contact-details/enter-contact-details.module').then( m => m.EnterContactDetailsPageModule)
   },
   {
     path: 'publish-message',
     loadChildren: () => import('./pages/publish-message/publish-message.module').then( m => m.PublishMessagePageModule)
+  },
+  {
+    path: 'dashboard',
+    loadChildren: () => import('./pages/dashboard/dashboard.module').then( m => m.DashboardPageModule)
   },
 
 ];

@@ -46,7 +46,7 @@
 
     <ion-item>
       <ion-label>Preferred Language</ion-label>
-      <ion-select [ngModelOptions]="{standalone: true}" [(ngModel)]="preferredLanguage" value="brown" okText="Okay"
+      <ion-select formControlName="preferredLanguage" [(ngModel)]="preferredLanguage" value="brown" okText="Okay"
         cancelText="Dismiss">
         <ion-select-option value="English">English</ion-select-option>
         <ion-select-option value="Hindi">Hindi</ion-select-option>
@@ -59,6 +59,12 @@
         <ion-select-option value="punjabi">Punjabi</ion-select-option>
       </ion-select>
     </ion-item>
+    <div *ngFor="let validation of validation_messages.preferredLanguage">
+      <p class="err_message"
+        *ngIf="contactForm.get('preferredLanguage').hasError(validation.type) && (contactForm.get('preferredLanguage').dirty || contactForm.get('preferredLanguage').touched)">
+        {{validation.message}}
+      </p>
+    </div>
 
     <ion-item lines="none">
       <ion-icon src="../../../assets/paper.svg"></ion-icon>
@@ -72,8 +78,9 @@
     </div>
 
     <ion-item lines="none">
-      <ion-icon src="../../../assets/contact.svg"></ion-icon>
-      <ion-input formControlname="contactCity" placeholder="Enter contact's city"></ion-input>
+      <ion-icon src="../../../assets/paper.svg"></ion-icon>
+      <ion-input formControlName="contactCity" placeholder="Enter contact's city">
+      </ion-input>
     </ion-item>
     <div *ngFor="let validation of validation_messages.contactCity">
       <p class="err_message"
@@ -115,16 +122,16 @@
       </p>
     </div>
 
-    <ion-item>
+    <!-- <ion-item>
       <ion-icon src="../../../assets/church.svg"></ion-icon>
       <ion-label>Is the contact a believer?</ion-label>
       No<ion-toggle mode="ios" (ionChange)="checkToggleValue($event)" [ngModelOptions]="{standalone: true}"
         [(ngModel)]="isBeliever" color="primary">
       </ion-toggle>Yes
-    </ion-item>
+    </ion-item> -->
 
     <div style="display: flex;justify-content: center;">
-      <ion-button mode="ios" fill="outline" (click)="updateForm()">Submit</ion-button>
+      <ion-button mode="ios" fill="outline" (click)="submitContactDetails()">Submit</ion-button>
     </div>
   </form>
 </ion-content>

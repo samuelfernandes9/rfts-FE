@@ -7,12 +7,14 @@ import { IonicModule } from '@ionic/angular';
 import { PublishMessagePageRoutingModule } from './publish-message-routing.module';
 
 import { PublishMessagePage } from './publish-message.page';
+import { RichTextEditorAllModule } from '@syncfusion/ej2-angular-richtexteditor';
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
+    RichTextEditorAllModule,
     PublishMessagePageRoutingModule
   ],
   declarations: [PublishMessagePage]

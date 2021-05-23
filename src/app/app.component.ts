@@ -17,9 +17,19 @@ import { readonly } from '../../config'
 export class AppComponent {
   public appPages = [
     {
+      title: 'Dashboard',
+      url: 'dashboard',
+      icon: 'edit'
+    },
+    {
       title: 'Home',
       url: 'home',
       icon: 'home'
+    },
+    {
+      title: 'Publish Message',
+      url: 'publish-message',
+      icon: 'logs'
     },
     {
       title: 'Enter Contact Details',
