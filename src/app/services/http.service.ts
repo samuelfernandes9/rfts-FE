@@ -85,4 +85,13 @@ export class HttpService {
   getContactDetails() {
     return this.http.get(apiUrl + '/contacts/getContactList');
   }
+
+  publishMailToAllBasedOnLanguage(body)
+  {
+    const headers = new HttpHeaders({
+      "Content-Type": 'application/json'
+    });
+
+    return this.http.post(apiUrl + '/messenger/sendMailMessageToAll', body, { headers })
+  }
 }

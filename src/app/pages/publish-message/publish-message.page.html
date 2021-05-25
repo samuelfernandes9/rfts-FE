@@ -9,8 +9,16 @@
 
 <ion-content>
   <ion-item lines="none">
+    <ion-input [(ngModel)]="language" placeholder="Enter language">
+    </ion-input>
+  </ion-item>
+  <ion-item lines="none">
+    <ion-input [(ngModel)]="imageLink" placeholder="Enter Image URL">
+    </ion-input>
+  </ion-item>
+  <ion-item lines="none">
     <!-- <ion-icon src="../../../assets/balloons.svg"></ion-icon> -->
-    <ion-input placeholder="Enter message subject">
+    <ion-input [(ngModel)]="subject" placeholder="Enter message subject">
     </ion-input>
   </ion-item>
   <ion-item lines="none">

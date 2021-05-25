@@ -1,4 +1,5 @@
-import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { HttpService } from 'src/app/services/http.service';
 
 @Component({
   selector: 'app-publish-message',
@@ -17,7 +18,10 @@ export class PublishMessagePage implements OnInit {
       'Image', '|', 'ClearFormat', 'Print', 'SourceCode', '|', 'FullScreen']
   };
   messageBody: any;
-  constructor() { }
+  imageLink: any;
+  subject: any;
+  language: any;
+  constructor(private httpService: HttpService) { }
 
   ngOnInit() {
   }
@@ -26,6 +30,19 @@ export class PublishMessagePage implements OnInit {
     // console.log(this.messageBody.nativeElement['innerHTML']);
     // console.log(document.getElementById('messageBody').innerText)
     console.log("Submit: ", this.messageBody);
+    let body = {
+      language: this.language,
+      subject: this.subject,
+      messageBody: this.messageBody,
+      imageLink: this.imageLink,
+    }
+    this.httpService.publishMailToAllBasedOnLanguage(body).subscribe(res=>{
+      console.log("Res: ",res)
+    },
+    err =>{
+      console.log("err:" ,err)
+    })
+    
   }
 
   checkTextAreaInput(event) {
