@@ -13,8 +13,8 @@
     </ion-input>
   </ion-item>
   <ion-item lines="none">
-    <ion-input [(ngModel)]="imageLink" placeholder="Enter Image URL">
-    </ion-input>
+    <ion-button (click)="presentModal()">Select an Image</ion-button>
+    <ion-img *ngIf="selectedImage!=''" [src]="selectedImage"></ion-img>
   </ion-item>
   <ion-item lines="none">
     <!-- <ion-icon src="../../../assets/balloons.svg"></ion-icon> -->

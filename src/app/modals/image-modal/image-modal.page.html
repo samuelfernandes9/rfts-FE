@@ -1,0 +1,24 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Pick an image</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <!-- <div class="gallery">
+      <img src="https://image.shutterstock.com/image-vector/bible-quote-modern-calligraphy-motivational-260nw-1704287092.jpg" alt="Cinque Terre" width="600" height="400">
+      <img src="https://image.shutterstock.com/image-vector/bible-quote-modern-calligraphy-motivational-260nw-1704287092.jpg" alt="Cinque Terre" width="600" height="400">
+      <img src="https://image.shutterstock.com/image-vector/bible-quote-modern-calligraphy-motivational-260nw-1704287092.jpg" alt="Cinque Terre" width="600" height="400">
+      <img src="https://image.shutterstock.com/image-vector/bible-quote-modern-calligraphy-motivational-260nw-1704287092.jpg" alt="Cinque Terre" width="600" height="400">
+      <img src="https://image.shutterstock.com/image-vector/bible-quote-modern-calligraphy-motivational-260nw-1704287092.jpg" alt="Cinque Terre" width="600" height="400">
+      <img src="https://image.shutterstock.com/image-vector/bible-quote-modern-calligraphy-motivational-260nw-1704287092.jpg" alt="Cinque Terre" width="600" height="400">
+      <img src="https://image.shutterstock.com/image-vector/bible-quote-modern-calligraphy-motivational-260nw-1704287092.jpg" alt="Cinque Terre" width="600" height="400">
+
+    </div> -->
+
+  <div *ngFor="let images of imagesArray" class="responsive">
+    <div class="gallery">
+      <img (click)="closeModal(images.url)" [src]="images.url" alt="Cinque Terre" width="600" height="400">
+    </div>
+  </div>
+</ion-content>

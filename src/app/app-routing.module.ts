@@ -53,7 +53,11 @@ const routes: Routes = [
   {
     path: 'dashboard',
     loadChildren: () => import('./pages/dashboard/dashboard.module').then( m => m.DashboardPageModule)
+  },  {
+    path: 'image-modal',
+    loadChildren: () => import('./modals/image-modal/image-modal.module').then( m => m.ImageModalPageModule)
   },
+
 
 ];
 

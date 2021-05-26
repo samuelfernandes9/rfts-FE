@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { ModalController } from '@ionic/angular';
+import { ImageModalPage } from 'src/app/modals/image-modal/image-modal.page';
 import { HttpService } from 'src/app/services/http.service';
 
 @Component({
@@ -21,7 +23,8 @@ export class PublishMessagePage implements OnInit {
   imageLink: any;
   subject: any;
   language: any;
-  constructor(private httpService: HttpService) { }
+  selectedImage = '';
+  constructor(public modalController: ModalController, private httpService: HttpService) { }
 
   ngOnInit() {
   }
@@ -36,17 +39,30 @@ export class PublishMessagePage implements OnInit {
       messageBody: this.messageBody,
       imageLink: this.imageLink,
     }
-    this.httpService.publishMailToAllBasedOnLanguage(body).subscribe(res=>{
-      console.log("Res: ",res)
+    this.httpService.publishMailToAllBasedOnLanguage(body).subscribe(res => {
+      console.log("Res: ", res)
     },
-    err =>{
-      console.log("err:" ,err)
-    })
-    
+      err => {
+        console.log("err:", err)
+      })
+
   }
 
   checkTextAreaInput(event) {
     console.log("testArea: ", event)
+  }
+
+  async presentModal() {
+    const modal = await this.modalController.create({
+      component: ImageModalPage,
+      cssClass: 'my-custom-class'
+    });
+
+    modal.onDidDismiss().then(data => {
+      console.log("Modal data: ", data)
+      this.selectedImage = data?.data?.imageUrl
+    })
+    return await modal.present();
   }
 
 }
