@@ -26,7 +26,7 @@
     <!-- <ion-textarea (ionChange)="checkTextAreaInput($event)" mode="ios" wrap="hard" autoGrow="true" id="messageBody"
       #messageBody placeholder="Enter message body">
     </ion-textarea> -->
-    <ejs-richtexteditor [(ngModel)]="messageBody" [toolbarSettings]='tools'></ejs-richtexteditor>
+    <ejs-richtexteditor height="100" enableResize="true" [(ngModel)]="messageBody"></ejs-richtexteditor>
 
   </ion-item>
   <ion-button (click)="submit()">Submit</ion-button>
